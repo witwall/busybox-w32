@@ -34,7 +34,9 @@ this project is for you
 ##Update busybox.exe
 Here is the last version [busybox.exe](http://frippery.org/files/busybox/busybox.exe)
 
-##the script to create 127 batch files
+##script to create 127 batch files
+
+*Under Linux
 
 ```
 sed -r  's/\ *(\w*\[*\-*\w*),*/echo @%~dp0\\\\busybox.exe \1 %*>\1.bat\n/g' bb.txt>bb
@@ -43,3 +45,16 @@ chmod u+x bb
 zip busybox.zip *.bat
 ```
 
+*Under Windows,
+
+```
+busybox bash
+$ for cmd in `busybox --list`; do echo @%~dp0\\busybox.exe $cmd %*>$cmd.bat ;done
+```
+
+##Change log
+*	replace busybox wget with [wget.exe](https://eternallybored.org/misc/wget/current/wget.exe) to support HTTPS
+
+##P.S.
+*	[scoop](https://github.com/lukesampson/scoop) is a good project, but it depends PowerShell3
+*	[gow](https://github.com/bmatzelle/gow) (Gnu On Windows) is the lightweight alternative to Cygwin
